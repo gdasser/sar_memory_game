@@ -47,6 +47,10 @@ label{display:block;font-weight:700;margin:0 0 6px;color:var(--mut)}
 .card-head .crop{width:100%;aspect-ratio:805/465;overflow:hidden}
 .card-head .crop img{width:100%;display:block}
 .satname{font-weight:900;font-size:clamp(20px,3vw,30px);text-align:center;margin:14px 0 4px}
+/* compact satellite header shown during the question (name + photo only, no data) */
+.qhead{text-align:center;margin:2px 0 14px}
+.qhead .card-head{width:190px}
+.qhead .satname{font-size:clamp(16px,2.4vw,22px);margin:8px 0 0}
 
 /* timers */
 .timer{font-variant-numeric:tabular-nums;font-weight:900;font-size:clamp(40px,8vw,84px);text-align:center;line-height:1}
@@ -151,15 +155,15 @@ const SATELLITES = [
 
   { "name":"Gaofen-3",          "country":"China", "operator":"CNSA / CRESDA",
     "availability":"government, unavailable", "operational":"2016–present",
-    "sensor":"5.66 cm / 5.3 GHz", "revisit":"daily",       "los":"30–40 degrees",         "image":"Gaofen.png" },
+    "sensor":"5.6 cm / 5.3 GHz", "revisit":"daily",       "los":"30–40 degrees",         "image":"Gaofen.png" },
 
   { "name":"NISAR",             "country":"India / USA", "operator":"ISRO / NASA",
     "availability":"global, open archive", "operational":"2025–present",
-    "sensor":"24 cm / 1.25 GHz & 9.3 cm / 3.20 GHz", "revisit":"12 days", "los":"33–47 degrees", "image":"NISAR.png" },
+    "sensor":"24 cm / 1.2 GHz & 9.3 cm / 3.2 GHz", "revisit":"12 days", "los":"33–47 degrees", "image":"NISAR.png" },
 
   { "name":"ICEYE Constellation","country":"Finland", "operator":"ICEYE",
     "availability":"on-demand, commercial", "operational":"2019–present",
-    "sensor":"3.1 cm / 9.65 GHz", "revisit":"1–22 days",   "los":"15–35 degrees",         "image":"ICEYE.png" },
+    "sensor":"3.1 cm / 9.6 GHz", "revisit":"1–22 days",   "los":"15–35 degrees",         "image":"ICEYE.png" },
 
   { "name":"Radarsat Constellation Mission","country":"Canada", "operator":"CSA / ASC / MDA Space",
     "availability":"government, restricted", "operational":"2019–present",
@@ -175,23 +179,23 @@ const SATELLITES = [
 
   { "name":"LuTan-1",           "country":"China", "operator":"CNSA / CAST",
     "availability":"national, restricted", "operational":"2022–present",
-    "sensor":"23.8 cm / 1.26 GHz","revisit":"4–8 days",    "los":"30 degrees",            "image":"LuTan.png" },
+    "sensor":"23.8 cm / 1.2 GHz","revisit":"4–8 days",    "los":"30 degrees",            "image":"LuTan.png" },
 
   { "name":"UMBRA",             "country":"USA", "operator":"Umbra",
     "availability":"on-demand, commercial", "operational":"2021–present",
-    "sensor":"3.13 cm / 9.6 GHz", "revisit":"subdaily",    "los":"varying",               "image":"UMBRA.png" },
+    "sensor":"3.1 cm / 9.6 GHz", "revisit":"subdaily",    "los":"varying",               "image":"UMBRA.png" },
 
   { "name":"Capella Space",     "country":"USA", "operator":"Capella Space",
     "availability":"on-demand, commercial", "operational":"2008–present",
-    "sensor":"3.11 cm / 9.65 GHz","revisit":"subdaily",    "los":"25–40 degrees",         "image":"CapellaSpace.png" },
+    "sensor":"3.1 cm / 9.6 GHz","revisit":"subdaily",    "los":"25–40 degrees",         "image":"CapellaSpace.png" },
 
   { "name":"StriX",             "country":"Japan", "operator":"Synspective",
     "availability":"on-demand, commercial", "operational":"2020–present",
-    "sensor":"3.11 cm / 9.65 GHz","revisit":"days (increasing)", "los":"30 degrees",       "image":"StriX.png" },
+    "sensor":"3.1 cm / 9.6 GHz","revisit":"days (increasing)", "los":"30 degrees",       "image":"StriX.png" },
 
   { "name":"BIOMASS",           "country":"European Union", "operator":"ESA",
     "availability":"global, open archive", "operational":"2025–present",
-    "sensor":"68.9 cm / 0.44 GHz","revisit":"3 days",      "los":"23–34 degrees",         "image":"Biomass.png" }
+    "sensor":"68.9 cm / 0.4 GHz","revisit":"3 days",      "los":"23–34 degrees",         "image":"Biomass.png" }
 ];
 const QUESTIONS = [
   { "id":1, "text":"Under which country's flag does this SAR mission fly, and who operates it?", "field":"country_operator" },
@@ -480,6 +484,7 @@ function Host(){
     const opts=(meta.options||[]).map((o,i)=>`<div class="opt ${LETTERS[i]}"><span class="tag">${LETTERS[i]}</span><span>${esc(o)}</span></div>`).join("");
     const el=h(`<div class="wrap"><div class="panel">
       <div class="row" style="justify-content:space-between"><span class="pill">Round ${meta.round} / ${meta.totalRounds}</span><span class="pill">Answer on your phone</span></div>
+      <div class="qhead">${cardHeadHTML(SATELLITES[meta.cardId])}</div>
       <h2 style="margin:14px 0">${esc(q.text)}</h2>
       <div class="ring"><i id="bar"></i></div>
       <div class="row" style="align-items:center"><div class="timer" id="tv" style="font-size:44px">–</div>
@@ -648,6 +653,7 @@ function Player(code){
       `<button class="opt ${LETTERS[i]}" data-i="${i}"><span class="tag">${LETTERS[i]}</span><span>${esc(o)}</span></button>`).join("");
     const el=h(`<div class="wrap"><div class="panel">
       <span class="pill">Round ${meta.round} / ${meta.totalRounds}</span>
+      <div class="qhead">${cardHeadHTML(SATELLITES[meta.cardId])}</div>
       <h2 style="margin:12px 0">${esc(q.text)}</h2>
       <div class="opts" id="opts">${optsHTML}</div>
       <p class="muted" id="hint" style="text-align:center;margin-top:16px">Tap your answer</p>
