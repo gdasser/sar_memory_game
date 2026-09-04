@@ -1,0 +1,112 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Spaceborne SAR Memory Game</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="app">
+  <header>
+    <div>
+      <h1>Spaceborne SAR Memory Game</h1>
+      <p>Remember the satellite. Roll the die. Answer correctly. Collect the satellite.</p>
+    </div>
+    <button id="helpBtn" class="secondary">Rules &amp; reference</button>
+  </header>
+
+  <main>
+    <section id="setup" class="panel">
+      <h2>New game</h2>
+      <label>Number of players
+        <select id="playerCount">
+          <option>2</option><option>3</option><option>4</option><option>5</option><option>6</option>
+        </select>
+      </label>
+      <div id="playerNames"></div>
+      <button id="startBtn" class="primary">Start game</button>
+    </section>
+
+    <section id="game" class="hidden">
+      <div class="topbar">
+        <div><span class="label">Turn</span> <strong id="turnPlayer"></strong></div>
+        <div><span class="label">Cards left</span> <strong id="cardsLeft"></strong></div>
+        <div><span class="label">Score</span> <strong id="scoreMini"></strong></div>
+      </div>
+
+      <div id="studyPanel" class="panel phase">
+        <div class="phaseTitle"><span>PHASE 1</span><strong>Study the satellite</strong></div>
+        <div class="timer" id="timer">01:00</div>
+        <div class="cardStage">
+          <img id="satelliteImage" alt="Satellite card">
+        </div>
+        <p class="instruction">Memorize the satellite card. When the timer reaches zero, the card will be hidden.</p>
+        <button id="finishStudyBtn" class="secondary">Finish study early</button>
+      </div>
+
+      <div id="rollPanel" class="panel phase hidden">
+        <div class="phaseTitle"><span>PHASE 2</span><strong>Roll the die</strong></div>
+        <div class="hiddenCard"><img src="assets/card-back.jpg" alt="Hidden satellite card"></div>
+        <div class="die" id="die">?</div>
+        <button id="rollBtn" class="primary">Roll die</button>
+      </div>
+
+      <div id="questionPanel" class="panel phase hidden">
+        <div class="phaseTitle"><span>PHASE 3</span><strong>Answer the question</strong></div>
+        <div class="qLayout">
+          <!-- Left column: revealed only after the answer is submitted -->
+          <aside id="revealHeader" class="revealHeader hidden">
+            <div class="card-head"><div class="crop"><img id="revealImg" alt="Satellite"></div></div>
+            <div class="revealName" id="revealName"></div>
+            <div class="revealTag">The satellite was</div>
+          </aside>
+          <div class="qMain">
+            <div class="questionNumber" id="questionNumber"></div>
+            <h2 id="questionText"></h2>
+            <textarea id="answer" rows="3" placeholder="Type your answer..."></textarea>
+            <button id="submitAnswerBtn" class="primary">Submit answer</button>
+            <div id="feedback"></div>
+            <button id="nextTurnBtn" class="primary hidden">Next player's turn</button>
+          </div>
+        </div>
+      </div>
+
+      <section class="scoreboard panel">
+        <h2>Scoreboard</h2>
+        <div id="scoreboard"></div>
+      </section>
+    </section>
+  </main>
+</div>
+
+<div id="helpModal" class="modal hidden">
+  <div class="modalBox">
+    <button id="closeHelp" class="close">×</button>
+    <h2>Rules &amp; reference</h2>
+    <p><strong>Goal:</strong> collect the most satellites.</p>
+    <ol>
+      <li>Study the satellite card for one minute.</li>
+      <li>When time is up, the card is hidden.</li>
+      <li>Roll the die. The number determines the question.</li>
+      <li>Answer correctly to collect the satellite.</li>
+      <li>If incorrect, the satellite returns to the deck and the turn passes.</li>
+    </ol>
+    <h3>Reading the acquisition &amp; availability line</h3>
+    <p><em>First word — how the data is acquired / who it serves:</em></p>
+    <p><strong>global:</strong> systematically acquired at global scale.</p>
+    <p><strong>on-demand / tasked:</strong> acquired on specific user request.</p>
+    <p><strong>national / government:</strong> primarily serves the operating nation / its agencies.</p>
+    <p><em>Second word — how you can get the data:</em></p>
+    <p><strong>open archive:</strong> openly available for research and applications.</p>
+    <p><strong>agreements:</strong> available under research / education agreements.</p>
+    <p><strong>commercial:</strong> sold commercially (may have research/education terms).</p>
+    <p><strong>dual-use:</strong> civilian and defence use.</p>
+    <p><strong>restricted:</strong> available only to specific countries / users.</p>
+    <p><strong>unavailable:</strong> not generally distributed.</p>
+  </div>
+</div>
+<script src="data.js"></script>
+<script src="app.js"></script>
+</body>
+</html>
