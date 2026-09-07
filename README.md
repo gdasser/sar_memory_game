@@ -1,8 +1,8 @@
 # Spaceborne SAR Memory Game
 
-Two versions of the same game, using the same 16 satellite cards and 6 questions.
-
+Game modes in class where the lecturer is hosting the game and a solo-mode where students can practice by themselves.
 **Live class game:** https://gdasser.github.io/sar_memory_game/sar_memory_class.html
+**Solo mode:**https://gdasser.github.io/sar_memory_game/sar_memory_class.html?solo=1
 
 ---
 
@@ -61,9 +61,9 @@ Tips: you can shorten a phase with "Show question now" / "Reveal answer".
 Students may join late (they score from the next round). Keep the host tab open
 for the whole game. Each "Host a new game" click makes a fresh room code.
 
-### Solo practice (no QR, no login)
+### Solo practice
 Students can also practise **on their own**, with no room code and no database:
-- From the start screen, tap **"Play solo — just me"**, or
+- From the start screen, tap **"Solo ,ode"**, or
 - open the direct link:
   **https://gdasser.github.io/sar_memory_game/sar_memory_class.html?solo=1**
 
@@ -108,16 +108,3 @@ Each round asks ONE of these about the satellite you just memorised:
 
 Note on the sensor question: wavelength and frequency are given to **one decimal
 place** (e.g. 3.1 cm / 9.6 GHz) so the game doesn't hinge on tiny differences.
-
----
-
-## 5. Changing things later
-
-- **Edit the satellites/answers:** change `data.js` (used by the classic version).
-  The class version has this data built *inside* `sar_memory_class.html`, so the
-  file needs to be rebuilt if you change the deck — send it to Claude to regenerate.
-- **Update the class game online:** after any change to `sar_memory_class.html`,
-  re-upload it to the GitHub repo (replace the file and commit). The link stays
-  the same; changes go live in ~1 minute.
-
-See `SETUP_class_game.md` for the Firebase/GitHub setup and troubleshooting.
