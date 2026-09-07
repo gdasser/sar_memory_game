@@ -156,10 +156,6 @@ const SATELLITES = [
     "availability":"on-demand, dual-use", "operational":"2008–present",
     "sensor":"3.1 cm / 9.6 GHz",  "revisit":"8–16 days",   "los":"20–60 degrees",         "image":"COSMO.png" },
 
-  { "name":"Gaofen-3",          "country":"China", "operator":"CNSA / CRESDA",
-    "availability":"government, unavailable", "operational":"2016–present",
-    "sensor":"5.6 cm / 5.3 GHz", "revisit":"daily",       "los":"30–40 degrees",         "image":"Gaofen.png" },
-
   { "name":"NISAR",             "country":"India / USA", "operator":"ISRO / NASA",
     "availability":"global, open archive", "operational":"2025–present",
     "sensor":"24 cm / 1.2 GHz & 9.3 cm / 3.2 GHz", "revisit":"12 days", "los":"33–47 degrees", "image":"NISAR.png" },
@@ -320,7 +316,7 @@ function Home(){
   const warn = configWarning? `<div class="err">${esc(configWarning)}</div>`:"";
   const el=h(`<div class="center"><div class="panel grow" style="max-width:620px">
     <h1>Spaceborne SAR Memory</h1>
-    <p class="sub">Test your knowledge on current SAR missions against the course-colleagues in the "host game"-mode or train in "solo"-mode</p>
+    <p class="sub">Test your knowledge on current spaceborne SAR missions against your course-colleagues by joining the "host game"-mode or train in "solo"-mode.</p>
     ${warn}
     <div class="stack">
       <button class="btn big" id="host" ${configWarning?"disabled":""}>Host a game </button>
@@ -331,7 +327,6 @@ function Home(){
       <div style="height:1px;background:var(--line);margin:6px 0"></div>
       <button class="btn big" id="solo">Solo mode</button>
     </div>
-    <p class="foot">Class game: open “Host a new game” on the projector; students join by scanning the QR code. Or tap “Solo mode” to practise on your own.</p>
   </div></div>`);
   el.querySelector("#host").onclick=()=>Host();
   el.querySelector("#solo").onclick=()=>Solo();
@@ -508,7 +503,7 @@ function Host(){
       if(bar)bar.style.width=Math.max(0,Math.min(100,left/dur*100))+"%";
       if(tv)tv.textContent=fmt(left);
       // during question, end early if everyone answered
-      if(meta.phase==="question" && Object.keys(players).length>0 && answeredCount()>=Object.keys(players).length){
+      if(meta.phase==="question" && Object.keys(players).length>0 && false){
         clearInterval(ticker); onEnd(); return;
       }
       if(left<=0){clearInterval(ticker);onEnd();}
