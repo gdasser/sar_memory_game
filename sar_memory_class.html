@@ -320,16 +320,16 @@ function Home(){
   const warn = configWarning? `<div class="err">${esc(configWarning)}</div>`:"";
   const el=h(`<div class="center"><div class="panel grow" style="max-width:620px">
     <h1>Spaceborne SAR Memory</h1>
-    <p class="sub">Live class game — everyone plays every round on their own phone. Highest score wins.</p>
+    <p class="sub">Test your knowledge on current SAR missions against the course-colleagues in the "host game"-mode or train in "solo"-mode</p>
     ${warn}
     <div class="stack">
-      <button class="btn big" id="host" ${configWarning?"disabled":""}>Host a new game (teacher)</button>
+      <button class="btn big" id="host" ${configWarning?"disabled":""}>Host a game </button>
       <div class="row">
         <input id="code" placeholder="Room code" maxlength="6" style="text-transform:uppercase">
         <button class="btn ghost" id="join" style="flex:0 0 auto" ${configWarning?"disabled":""}>Join as player</button>
       </div>
       <div style="height:1px;background:var(--line);margin:6px 0"></div>
-      <button class="btn big ghost" id="solo">Solo mode</button>
+      <button class="btn big" id="solo">Solo mode</button>
     </div>
     <p class="foot">Class game: open “Host a new game” on the projector; students join by scanning the QR code. Or tap “Solo mode” to practise on your own.</p>
   </div></div>`);
