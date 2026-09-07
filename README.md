@@ -53,9 +53,27 @@ just works from that link. Setup details (in case you ever redo it) are in
      Click **Next round**.
 5. After the last round, a **winner** screen shows the final ranking.
 
+Defaults: **60 s** study time and **10 rounds** (both adjustable before you start).
+The countdown timer shows on the **main/host screen**; the students' phones just
+show the card and the answer buttons.
+
 Tips: you can shorten a phase with "Show question now" / "Reveal answer".
 Students may join late (they score from the next round). Keep the host tab open
 for the whole game. Each "Host a new game" click makes a fresh room code.
+
+### Solo practice (no QR, no login)
+Students can also practise **on their own**, with no room code and no database:
+- From the start screen, tap **"Play solo — just me"**, or
+- open the direct link:
+  **https://gdasser.github.io/sar_memory_game/sar_memory_class.html?solo=1**
+
+In solo you pick the **number of rounds** (1, 5, 10, 15, or all 16) and an optional
+**time per card** (no timer / 30 s / 60 s). Memorise each card — if a timer is set,
+the card hides automatically when it runs out, or you can tap **"Show the question"**
+earlier — then choose an answer and see the correct one plus the satellite. At the
+end you get a score of **correct / total** (and a %).
+Solo works even without internet once the page has loaded, since it doesn't use
+the database.
 
 ---
 
